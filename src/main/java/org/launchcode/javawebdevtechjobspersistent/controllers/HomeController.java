@@ -23,6 +23,9 @@ public class HomeController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    @Autowired
+    private JobRepository jobRepository;
+
     @RequestMapping("")
     public String index(Model model) {
 
@@ -54,7 +57,7 @@ public class HomeController {
             return "add";
         }
 
-        JobRepository.save(newJob);
+        jobRepository.save(newJob);
         return "redirect:";
     }
 
