@@ -1,7 +1,10 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
@@ -12,6 +15,9 @@ public class Skill extends AbstractEntity {
     public Skill(@Size(min=1, max=500, message="Field cannot be blank, maximum 100 characters")String description) {
         this.description = description;
     }
+
+    @ManyToMany(mappedBy = "skills")
+    private final List<Job> jobs = new ArrayList<>();
 
     public Skill() {}
 
