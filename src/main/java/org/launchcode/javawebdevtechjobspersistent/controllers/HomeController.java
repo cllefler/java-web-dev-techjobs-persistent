@@ -34,7 +34,7 @@ public class HomeController {
     @RequestMapping("")
     public String index(Model model) {
 
-        model.addAttribute("title", "My Jobs");
+        model.addAttribute("jobs", jobRepository.findAll());
 
         return "index";
     }
@@ -52,9 +52,9 @@ public class HomeController {
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, @RequestParam Integer employerId, @RequestParam List<Integer> skills) {
 
-        if (employerId == null) {
-            model.addAttribute("title", "Add Jobs");
-        }
+//        if (employerId == null) {
+//            model.addAttribute("title", "Add Jobs");
+//        }
 
         Optional<Employer> result = employerRepository.findById(employerId);
         Employer employer = result.get();
@@ -76,7 +76,7 @@ public class HomeController {
     public String displayViewJob(Model model, @PathVariable Integer jobId) {
         Optional<Job> result = jobRepository.findById(jobId);
         if(result.isPresent()) {
-            Job job = (Job)result.get();
+            Job job = result.get();
             model.addAttribute("jobs", job);
             return "view";
         } else {
