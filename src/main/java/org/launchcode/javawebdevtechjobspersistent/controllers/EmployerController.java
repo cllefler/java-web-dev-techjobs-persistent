@@ -51,12 +51,8 @@ public class EmployerController {
 
         Optional<Employer> result = employerRepository.findById(employerId);
 
-        if (result.isEmpty()) {
-            model.addAttribute("title", "Add Employer");
-        } else {
             Employer employer = result.get();
             model.addAttribute("employer", employer);
-        }
 
         return "employers/view";
     }

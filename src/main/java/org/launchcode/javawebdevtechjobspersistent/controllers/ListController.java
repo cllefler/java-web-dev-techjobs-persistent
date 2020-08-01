@@ -53,12 +53,16 @@ public class ListController {
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
         if (column.toLowerCase().equals("all")){
+            System.out.println("Goodbye");
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
         } else {
+            System.out.print("Hello");
             jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
+
         }
+        System.out.print("jobs" + jobs);
         model.addAttribute("jobs", jobs);
 
         return "list-jobs";

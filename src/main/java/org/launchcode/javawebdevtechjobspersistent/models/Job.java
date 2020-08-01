@@ -1,7 +1,6 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.ArrayList;
@@ -11,15 +10,9 @@ import java.util.List;
 public class Job extends AbstractEntity{
 
     @ManyToOne
-//    @Valid
-//    @NotNull
-    @JoinColumn(name = "employerId")
     private Employer employer;
 
     @ManyToMany
-//    @Valid
-//    @NotNull
-    @JoinColumn(name = "skillId")
     private List<Skill> skills = new ArrayList<>();
 
     public Job() {
@@ -42,11 +35,8 @@ public class Job extends AbstractEntity{
         return skills;
     }
 
-    public void setSkills(Skill skills) {
-        this.skills = (List<Skill>) skills;
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
-    public void addSkills(List<Skill> skills) {
-        this.skills.add((Skill) skills);
-    }
 }
